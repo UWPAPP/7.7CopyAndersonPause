@@ -32,24 +32,22 @@ namespace _7._7CopyAndersonPause
 
         private void Grid_DragOver(object sender, DragEventArgs e)
         {
-            //指定复制操作
+
             e.AcceptedOperation = DataPackageOperation.Copy;
 
             e.DragUIOverride.Caption = "Custom text here";
-            //e.DragUIOverride.SetContentFromBitmapImage(null); 
+            e.DragUIOverride.SetContentFromBitmapImage(new BitmapImage(new Uri("ms-appx:///StoreLogo.png")));
             e.DragUIOverride.IsCaptionVisible = true; 
             e.DragUIOverride.IsContentVisible = true; 
-            e.DragUIOverride.IsGlyphVisible = true; 
-
+            e.DragUIOverride.IsGlyphVisible = true;
             e.Handled = true;
         }
 
         private async void Grid_Drop(object sender, DragEventArgs e)
         {
-            //验证被拖过来的是否是文件
+
             if (e.DataView.Contains(StandardDataFormats.StorageItems))
             {
-                //获取文件列表
                 var items = await e.DataView.GetStorageItemsAsync();
                 if (items.Count > 0)
                 {
@@ -59,6 +57,8 @@ namespace _7._7CopyAndersonPause
                     Image.Source = bitmapImage;
                 }
             }
+
+
         }
     }
 }
